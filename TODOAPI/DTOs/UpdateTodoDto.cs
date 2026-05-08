@@ -11,7 +11,7 @@ namespace TODOAPI.DTOs
         [StringLength(500)]
         public required string Description { get; set; }
 
-        public bool IsCompleted { get; set; } 
+        public bool IsCompleted { get; set; } = false;
 
         public DateTime? DueDate { get; set; }
 
