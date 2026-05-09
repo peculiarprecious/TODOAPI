@@ -44,8 +44,8 @@ namespace TODOAPI.Services
                 Id = _nextId++,
                 Title = dto.Title,
                 Description = dto.Description,
-                IsCompleted = false,          
-                CreatedAt = DateTime.Now,   
+                IsCompleted = false,
+                CreatedAt = DateTime.Now,
                 DueDate = dto.DueDate,
                 Priority = dto.Priority
             };
