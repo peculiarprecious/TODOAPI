@@ -30,7 +30,7 @@ namespace TODOAPI.Controllers
         {
             var todo = _service.GetById(id);
             if (todo == null)
-            return NotFound(BuildErrorResponse(400, $"Todo with id {id} not found"));
+                return NotFound(BuildErrorResponse(400, $"Todo with id {id} not found"));
             return Ok(todo);
         }
         // POST /api/todos
@@ -88,7 +88,7 @@ namespace TODOAPI.Controllers
         private Dictionary<string, string[]> GetValidationErrors()
         {
             return ModelState
-                .Where(e => e.Value != null &&  e.Value.Errors.Count > 0)
+                .Where(e => e.Value != null && e.Value.Errors.Count > 0)
                 .ToDictionary(
                     e => e.Key,
                     e => e.Value!.Errors

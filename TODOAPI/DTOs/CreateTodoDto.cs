@@ -2,42 +2,66 @@
 
 namespace TODOAPI.DTOs
 {
-    public class CreateTodoDto
+    public class CreateTodoDto : IValidatableObject
     {
-
-        [Required(ErrorMessage = "Title is required")]
-        [StringLength(100, MinimumLength = 3,
-               ErrorMessage = "Title must be between 3 and 100 characters")]
-        public required string Title { get; set; }
+        [StringLength(100, ErrorMessage = "Title cannot exceed 100 characters")]
+        public string Title { get; set; } = string.Empty;
 
         [StringLength(500, ErrorMessage = "Description cannot exceed 500 characters")]
-        public required string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         public DateTime? DueDate { get; set; }
-
-        [RegularExpression("Low|Medium|High", ErrorMessage = "Priority must be Low, Medium, or High")]
         public string Priority { get; set; } = "Medium";
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext context)
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
+
+            if (string.IsNullOrEmpty(Title))
+            {
+                yield return new ValidationResult(
+                    "Title is required",
+                    new[] { nameof(Title) }
+                );
+               
+            }
+            
             if (string.IsNullOrWhiteSpace(Title))
             {
                 yield return new ValidationResult(
-                    "Title cannot be empty contain only whitespace",
+                    "Title cannot contain only whitespace",
+                    new[] { nameof(Title) }
+                );
+                
+            }
+
+            if (!string.IsNullOrWhiteSpace(Title) &&
+                Title.Trim().Length < 3)
+            {
+                yield return new ValidationResult(
+                    "Title must be at least 3 characters",
                     new[] { nameof(Title) }
                 );
             }
 
-            if (string.IsNullOrWhiteSpace(Description))
+            if (
+                string.IsNullOrWhiteSpace(Description))
             {
                 yield return new ValidationResult(
-
-                    "Description cannot be empty or contain only whitespace", 
-                    new[] {nameof(Description)});
+                    "Description cannot contain only whitespace",
+                    new[] { nameof(Description) }
+                );
             }
 
-            // DueDate cannot be in the past
-            if (DueDate.HasValue && DueDate.Value < DateTime.Now)
+            var validPriorities = new[] { "Low", "Medium", "High" };
+            if (!validPriorities.Contains(Priority))
+            {
+                yield return new ValidationResult(
+                    "Priority must be Low, Medium, or High",
+                    new[] { nameof(Priority) }
+                );
+            }
+            if (DueDate.HasValue &&
+                DueDate.Value.Date < DateTime.Today)
             {
                 yield return new ValidationResult(
                     "DueDate cannot be in the past",
@@ -47,4 +71,3 @@ namespace TODOAPI.DTOs
         }
     }
 }
-
