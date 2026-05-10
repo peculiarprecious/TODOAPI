@@ -1,7 +1,7 @@
 # Enhanced TODO API
 
 A production-quality RESTful API built with ASP.NET Core Web API.
-Implements DTOs, validation,  error handling,
+Implements Models, DTOs, Services, validation,  error handling,
 and proper HTTP status codes.
 
 
@@ -170,5 +170,5 @@ All errors return this standardized format:
 
 ## Author
 
-Precious
+Precious Nwajei
 GitHub: https://github.com/peculiarprecious
