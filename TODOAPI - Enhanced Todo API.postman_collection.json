@@ -1,0 +1,281 @@
+{
+  "info": {
+    "_postman_id": "af131d8b-cd07-42a9-abcf-3fc0c6b95adf",
+    "name": "TODOAPI - Enhanced Todo API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54642544",
+    "_collection_link": "https://go.postman.co/collection/54642544-af131d8b-cd07-42a9-abcf-3fc0c6b95adf?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GET All Todos (Empty List)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7138/api/Todos",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7138",
+          "path": [
+            "api",
+            "Todos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Create Todo (Valid Data)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Buy groceries\",\r\n  \"description\": \"Milk, eggs, bread\",\r\n  \"dueDate\": \"2026-12-01T00:00:00\",\r\n  \"priority\": \"High\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7138/api/Todos",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7138",
+          "path": [
+            "api",
+            "Todos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Create Todo (Invalid — Missing Title)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"description\": \"Missing title\",\r\n  \"priority\": \"High\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7138/api/Todos",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7138",
+          "path": [
+            "api",
+            "Todos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Create Todo (Invalid — Past DueDate)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Old Task\",\r\n  \"dueDate\": \"2020-01-01T00:00:00\",\r\n  \"priority\": \"Low\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7138/api/Todos",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7138",
+          "path": [
+            "api",
+            "Todos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Single Todo (Exists)",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Old Task\",\r\n  \"dueDate\": \"2020-01-01T00:00:00\",\r\n  \"priority\": \"Low\"\r\n}"
+        },
+        "url": {
+          "raw": "https://localhost:7138/api/Todos/1",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7138",
+          "path": [
+            "api",
+            "Todos",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Single Todo (404 Not Found)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7138/api/Todos/999",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7138",
+          "path": [
+            "api",
+            "Todos",
+            "999"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT Update Todo (Valid)",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Buy groceries and cook dinner\",\r\n  \"description\": \"Updated description\",\r\n  \"isCompleted\": true,\r\n  \"dueDate\": \"2026-12-01T00:00:00\",\r\n  \"priority\": \"Medium\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7138/api/Todos/1",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7138",
+          "path": [
+            "api",
+            "Todos",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT Update Todo (Invalid Data)",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"AB\",\r\n  \"priority\": \"Urgent\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7138/api/Todos/1",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7138",
+          "path": [
+            "api",
+            "Todos",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE Todo",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7138/api/Todos/1",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7138",
+          "path": [
+            "api",
+            "Todos",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
